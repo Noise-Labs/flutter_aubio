@@ -1,0 +1,26 @@
+#!/bin/sh
+
+AUBIO_TMPDIR=`mktemp -d /var/tmp/aubio-build-XXXX`
+OUTPUTDIR=$PWD/dist
+BUILDPWD=$PWD/build/src
+
+CFLAGS="-Werror -Os"
+WAFCONF="--disable-intelipp --disable-blas --disable-atlas --disable-jack --disable-sndfile --disable-avcodec --disable-vorbis --disable-flac --disable-sndfile --disable-avcodec  --disable-samplerate --disable-accelerate" # --disable-memcpy --disable-accelerate"
+
+
+
+for PLATFORM in  ios iosimulator
+do
+  rm -rf $AUBIO_TMPDIR/dist-$PLATFORM
+  WAF_OPTIONS="--verbose --destdir $AUBIO_TMPDIR/dist-$PLATFORM --with-target-platform $PLATFORM $WAFCONF"
+  for target in distclean configure build
+  do
+    CFLAGS="$CFLAGS" ./waf $target $WAF_OPTIONS
+  done
+  cp $BUILDPWD/libaubio.a $OUTPUTDIR/libaubio-$PLATFORM.a
+    cp $BUILDPWD/libaubio.dylib $OUTPUTDIR/libaubio-$PLATFORM.dylib
+  ./waf uninstall $WAF_OPTIONS
+
+done
+
+
