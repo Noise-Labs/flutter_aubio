@@ -22,8 +22,8 @@ A new flutter plugin project.
   s.swift_version = '5.0'
   #s.prepare_command  = 'cd aubio && make getwaf && scripts/build_ios_static_libraries && cd .. && bash ./build_static_library.sh'
   s.preserve_paths   = 'Library/*.a'
-  s.vendored_libraries = 'Library/libaubio-iosimulator.a'
-  s.xcconfig = { 'OTHER_LDFLAGS' => '-all_load' }
+  #s.vendored_libraries = 'Library/libaubio-iosimulator.a'
+  s.ios.xcconfig = { 'OTHER_LDFLAGS' => ' -Wl,-force_load,$PROJECT_DIR/../.symlinks/plugins/flutter_aubio/ios/Library/libaubio-iosimulator.a' }
 end
 
 
