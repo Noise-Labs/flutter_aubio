@@ -19,6 +19,8 @@ class FlutterAubio {
     var instance = new aubio(nativeAddLib);
     var f = instance.new_fvec(10);
     print("${f}");
+    var g = instance.new_fmat(10, 5);
+    print("${g}");
     return version;
   }
 }

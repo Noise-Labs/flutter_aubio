@@ -16,13 +16,14 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.platform = :ios, '8.0'
+  s.ios.frameworks = 'AudioToolbox','Accelerate'
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
-  s.prepare_command  = 'cd aubio && make getwaf && scripts/build_ios_static_libraries && cd .. && bash ./build_static_library.sh'
+  #s.prepare_command  = 'cd aubio && make getwaf && scripts/build_ios_static_libraries && cd .. && bash ./build_static_library.sh'
   s.preserve_paths   = 'Library/*.a'
   s.vendored_libraries = 'Library/libaubio-iosimulator.a'
-  #s.xcconfig = { 'OTHER_LDFLAGS' => '-llibaubio-iosimulator.a' }
+  s.xcconfig = { 'OTHER_LDFLAGS' => '-all_load' }
 end
 
 
