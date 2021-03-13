@@ -20,7 +20,7 @@ A new flutter plugin project.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
   s.prepare_command  = 'cd aubio && make getwaf && scripts/build_ios_static_libraries && cd .. && bash ./build_static_library.sh'
-  s.preserve_paths   = 'Library/*'
+  s.preserve_paths   = 'Library/*.a'
   s.vendored_libraries = 'Library/libaubio-iosimulator.a'
   #s.xcconfig = { 'OTHER_LDFLAGS' => '-llibaubio-iosimulator.a' }
 end
