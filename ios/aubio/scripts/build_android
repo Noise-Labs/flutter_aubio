@@ -4,9 +4,11 @@ set -e
 set -x
 
 # location of android NDK
-NDK_PATH=$PWD/../contrib/android-ndk-r12
+#NDK_PATH=$PWD/../contrib/android-ndk-r12
 
-WAFOPTS="--disable-avcodec --disable-samplerate --disable-jack --disable-sndfile"
+NDK_PATH=$ANDROID_NDK_PATH
+
+WAFOPTS="--disable-intelipp --disable-blas --disable-atlas --disable-jack --disable-sndfile --disable-avcodec --disable-vorbis --disable-flac --disable-sndfile --disable-avcodec"
 
 # set these variables to change the default values
 [ -z $PLATFORM ] && PLATFORM=android-19
@@ -14,7 +16,7 @@ WAFOPTS="--disable-avcodec --disable-samplerate --disable-jack --disable-sndfile
 
 # location nof the standalone toolchains, created with
 # $NDK_PATH/build/tools/make-standalone-toolchains.sh
-NDK_TOOLCHAINS=$PWD/contrib
+NDK_TOOLCHAINS=$NDK_PATH/toolchains
 
 # location of the current toolchain
 CURRENT_TOOLCHAIN=$NDK_TOOLCHAINS/toolchain-$PLATFORM-$ARCH
@@ -32,7 +34,7 @@ DESTDIR=$PWD/dist-$PLATFORM-$ARCH
 [ -d $DESTDIR ] && rm -rf $DESTDIR
 
 # get the link to gcc
-CC=`ls $CURRENT_TOOLCHAIN/*-linux-android*/bin/gcc`
+CC=`ls $CURRENT_TOOLCHAIN/bin/arm-linux-androideabi-gcc`
 
 CFLAGS="-Os" \
   CC=$CC \
