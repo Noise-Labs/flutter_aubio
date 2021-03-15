@@ -5,7 +5,7 @@ OUTPUTDIR=$PWD/dist
 BUILDPWD=$PWD/build/src
 
 CFLAGS="-Werror -Os"
-WAFCONF="--disable-intelipp --disable-blas --disable-atlas --disable-jack --disable-sndfile --disable-avcodec --disable-vorbis --disable-flac --disable-sndfile --disable-avcodec  --disable-samplerate --disable-accelerate" # --disable-memcpy --disable-accelerate"
+WAFCONF="--disable-intelipp --disable-blas --disable-atlas --disable-jack --disable-sndfile --disable-avcodec --disable-vorbis --disable-flac --disable-sndfile --disable-avcodec" # --disable-memcpy --disable-accelerate"
 
 
 
