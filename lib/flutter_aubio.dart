@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_aubio/aubio_ffi.dart';
 
 final ffi.DynamicLibrary nativeAddLib = Platform.isAndroid
-    ? ffi.DynamicLibrary.open("libnative_add.so")
+    ? ffi.DynamicLibrary.open("libaubio.so")
     : ffi.DynamicLibrary.process();
 
 class FlutterAubio {
@@ -17,10 +17,11 @@ class FlutterAubio {
     final String version = await _channel.invokeMethod('getPlatformVersion');
     print("$version");
     var instance = new aubio(nativeAddLib);
-    var f = instance.new_fvec(10);
-    print("${f}");
     var g = instance.new_fmat(10, 5);
     print("${g}");
+    var f = instance.new_fvec(10);
+    print("${f}");
+
     return version;
   }
 }

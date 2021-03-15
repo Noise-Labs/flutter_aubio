@@ -11,8 +11,8 @@ NDK_PATH=$ANDROID_NDK_PATH
 WAFOPTS="--disable-intelipp --disable-blas --disable-atlas --disable-jack --disable-sndfile --disable-avcodec --disable-vorbis --disable-flac --disable-sndfile --disable-avcodec"
 
 # set these variables to change the default values
-[ -z $PLATFORM ] && PLATFORM=android-19
-[ -z $ARCH ] && ARCH=arm
+[ -z $PLATFORM ] && PLATFORM=android-28
+[ -z $ARCH ] && ARCH=arm64
 
 # location nof the standalone toolchains, created with
 # $NDK_PATH/build/tools/make-standalone-toolchains.sh
@@ -24,7 +24,7 @@ CURRENT_TOOLCHAIN=$NDK_TOOLCHAINS/toolchain-$PLATFORM-$ARCH
 # if it does not exist, create the toolchain
 [ -d $CURRENT_TOOLCHAIN ] || \
   $NDK_PATH/build/tools/make-standalone-toolchain.sh \
-    --platform=$PLATFORM --arch=$ARCH \
+    --platform=$PLATFORM --arch=$ARCH --abis=\
     --install-dir=$CURRENT_TOOLCHAIN
 
 # aubio install destination directory
@@ -34,7 +34,7 @@ DESTDIR=$PWD/dist-$PLATFORM-$ARCH
 [ -d $DESTDIR ] && rm -rf $DESTDIR
 
 # get the link to gcc
-CC=`ls $CURRENT_TOOLCHAIN/bin/arm-linux-androideabi-gcc`
+CC=`ls $CURRENT_TOOLCHAIN/bin/aarch64-linux-android-gcc`
 
 CFLAGS="-Os" \
   CC=$CC \
