@@ -13,6 +13,10 @@ class FlutterAubio {
   static const MethodChannel _channel =
       const MethodChannel('flutter_aubio');
 
+  static getInstance() {
+    return new aubio(nativeAddLib);
+  }
+
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');
     print("$version");

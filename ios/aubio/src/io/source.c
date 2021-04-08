@@ -71,6 +71,7 @@ aubio_source_t * new_aubio_source(const char_t * uri, uint_t samplerate, uint_t 
     s->s_del = (del_aubio_source_t)(del_aubio_source_avcodec);
     return s;
   }
+
 #endif /* HAVE_LIBAV */
 #ifdef HAVE_SOURCE_APPLE_AUDIO
   s->source = (void *)new_aubio_source_apple_audio(uri, samplerate, hop_size);
